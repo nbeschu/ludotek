@@ -4,12 +4,14 @@ namespace Ludotek.Api.ViewModels
 {
     public class Erreur
     {
-        public Erreur()
-        {
-        }
-
+        /// <summary>
+        /// Code erreur
+        /// </summary>
         public string Code { get; set; }
 
+        /// <summary>
+        /// Libellé erreur
+        /// </summary>
         public string Libelle { get; set; }
 
         /// <summary>

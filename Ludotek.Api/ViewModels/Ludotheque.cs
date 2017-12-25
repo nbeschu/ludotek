@@ -8,10 +8,19 @@ namespace Ludotek.Api.ViewModels
 {
     public class Ludotheque
     {
+        /// <summary>
+        /// Nom item
+        /// </summary>
         public string NomItem { get; set; }
 
+        /// <summary>
+        /// Liste des tags
+        /// </summary>
         public List<Tag> Tags { get; set; }
 
+        /// <summary>
+        /// Gestion des erreurs
+        /// </summary>
         public Erreur Erreur { get; set; }
 
         /// <summary>
@@ -30,6 +39,29 @@ namespace Ludotek.Api.ViewModels
                 NomItem = dto.NomItem,
                 Tags = listTags.ConvertAll(x => Tag.ToModel(x))
             };
+        }
+
+        /// <summary>
+        /// Converteur Model -> Dto
+        /// </summary>
+        /// <returns>Le Dto converti</returns>
+        public LudothequeDto ToDto()
+        {
+            var dto = new LudothequeDto
+            {
+                NomItem = NomItem
+            };
+
+            foreach (var tag in Tags)
+            {
+                dto.LudoTag.Add(new LudoTagDto
+                {
+                    Ludotheque = dto,
+                    Tag = tag.ToDto()
+                });
+            }
+
+            return dto;
         }
     }
 }

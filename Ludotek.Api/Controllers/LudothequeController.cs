@@ -61,12 +61,18 @@ namespace Ludotek.Api.Controllers
         [HttpPost]
         public void Post([FromBody]string value)
         {
+            // Appel au business
+            ludothequeBusiness.Process();
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]Ludotheque item)
         {
+            var itemDto = item.ToDto();
+
+            // Appel au business
+            ludothequeBusiness.UpdateItem(id, itemDto);
         }
 
         // DELETE api/values/5

@@ -30,13 +30,28 @@ namespace Ludotek.Api.Dao
         {
             var result = new List<LudothequeDto>();
 
-            using (context)
-            {
-                result = context.Ludotheque
-                    .Include(e => e.LudoTag)
-                    .ThenInclude(e => e.Tag)
-                    .ToList();
-            }
+            result = context.Ludotheque
+                .Include(e => e.LudoTag)
+                .ThenInclude(e => e.Tag)
+                .ToList();
+
+            return result;
+        }
+
+        /// <summary>
+        /// Retourne un item de la ludothèque
+        /// </summary>
+        /// <param name="id">l'item recherché</param>
+        /// <returns>L'item trouvé</returns>
+        public LudothequeDto Get(int id)
+        {
+            var result = new LudothequeDto();
+
+            result = context.Ludotheque
+                .Where(x => x.Id == id)
+                .Include(e => e.LudoTag)
+                .ThenInclude(e => e.Tag)
+                .FirstOrDefault();
 
             return result;
         }
@@ -50,16 +65,51 @@ namespace Ludotek.Api.Dao
         {
             var result = new LudothequeDto();
 
-            using (context)
-            {
-                result = context.Ludotheque
-                    .Where(x => x.NomItem == nomItem)
-                    .Include(e => e.LudoTag)
-                    .ThenInclude(e => e.Tag)
-                    .FirstOrDefault();
-            }
+            result = context.Ludotheque
+                .Where(x => x.NomItem.Contains(nomItem))
+                .Include(e => e.LudoTag)
+                .ThenInclude(e => e.Tag)
+                .FirstOrDefault();
 
             return result;
+        }
+
+        /// <summary>
+        /// Retourne un item de la ludothèque
+        /// </summary>
+        /// <param name="nomItem">l'item recherché</param>
+        /// <returns>L'item trouvé</returns>
+        public LudothequeDto GetForCreate(string nomItem)
+        {
+            var result = new LudothequeDto();
+
+            result = context.Ludotheque
+                .Where(x => x.NomItem == nomItem)
+                .Include(e => e.LudoTag)
+                .ThenInclude(e => e.Tag)
+                .FirstOrDefault();
+
+            return result;
+        }
+
+        /// <summary>
+        /// Ajoute une liste item avec leurs tags
+        /// </summary>
+        /// <param name="itemTags">La liste item avec leurs tags</param>
+        public void Insert(LudothequeDto item)
+        {
+            context.Ludotheque.Add(item);
+            context.SaveChanges();
+        }
+
+        /// <summary>
+        /// Met à jour un item avec ses tags
+        /// </summary>
+        /// <param name="item">l'item avec ses tags</param>
+        internal void Update(LudothequeDto item)
+        {
+            context.Update(item);
+            context.SaveChanges();
         }
     }
 }

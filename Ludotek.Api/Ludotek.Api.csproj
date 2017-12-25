@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Resources\Input\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

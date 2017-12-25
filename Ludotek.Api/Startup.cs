@@ -52,6 +52,7 @@ namespace Ludotek.Api
         {
             // Enregistrement des DAO
             services.AddScoped(typeof(LudothequeDao));
+            services.AddScoped(typeof(TagDao));
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.

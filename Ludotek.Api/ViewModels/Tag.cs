@@ -8,6 +8,9 @@ namespace Ludotek.Api.ViewModels
 {
     public class Tag
     {
+        /// <summary>
+        /// Nom du tag
+        /// </summary>
         public string NomTag { get; set; }
 
         /// <summary>
@@ -20,6 +23,18 @@ namespace Ludotek.Api.ViewModels
             return new Tag
             {
                 NomTag = dto.NomTag
+            };
+        }
+
+        /// <summary>
+        /// Converteur Model -> Dto
+        /// </summary>
+        /// <returns>Le Dto converti</returns>
+        public TagDto ToDto()
+        {
+            return new TagDto
+            {
+                NomTag = NomTag
             };
         }
     }
