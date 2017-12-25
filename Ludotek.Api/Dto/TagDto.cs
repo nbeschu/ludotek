@@ -6,7 +6,7 @@ namespace Ludotek.Api.Dto
     /// <summary>
     /// Dto Généré via reverse engineering de la DBB
     /// </summary>
-    public partial class TagDto
+    public partial class TagDto : GlobalDto
     {
         /// <summary>
         /// Constructeur

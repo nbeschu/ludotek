@@ -38,7 +38,7 @@ namespace Ludotek.Api.Controllers
             // Conversion en model
             var itemsModel = items.ConvertAll(x => Ludotheque.ToModel(x));
 
-            return Result(itemsModel);
+            return Result(itemsModel.Cast<GlobalModel>().ToList());
         }
 
         /// <summary>

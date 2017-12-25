@@ -23,9 +23,20 @@ namespace Ludotek.Api.Dao
         }
 
         /// <summary>
+        /// Récupère l'ensemble des tag existants
+        /// </summary>
+        /// <returns>Le tag trouvé</returns>
+        public List<TagDto> Get()
+        {
+            var result = context.Tag.ToList();
+
+            return result;
+        }
+
+        /// <summary>
         /// Récupère un tag
         /// </summary>
-        /// <param name="inputTag">LA tag recherché</param>
+        /// <param name="inputTag">Le tag recherché</param>
         /// <returns>Le tag trouvé</returns>
         public TagDto Get(string inputTag)
         {

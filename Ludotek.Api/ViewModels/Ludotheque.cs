@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ludotek.Api.ViewModels
 {
-    public class Ludotheque
+    public class Ludotheque : GlobalModel
     {
         /// <summary>
         /// Nom item
@@ -17,11 +17,6 @@ namespace Ludotek.Api.ViewModels
         /// Liste des tags
         /// </summary>
         public List<Tag> Tags { get; set; }
-
-        /// <summary>
-        /// Gestion des erreurs
-        /// </summary>
-        public Erreur Erreur { get; set; }
 
         /// <summary>
         /// Converteur Dto -> Model

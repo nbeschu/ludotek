@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ludotek.Api.ViewModels
 {
-    public class Tag
+    public class Tag : GlobalModel
     {
         /// <summary>
         /// Nom du tag
@@ -22,6 +22,7 @@ namespace Ludotek.Api.ViewModels
         {
             return new Tag
             {
+                Erreur = Erreur.ToModel(dto.Erreur),
                 NomTag = dto.NomTag
             };
         }

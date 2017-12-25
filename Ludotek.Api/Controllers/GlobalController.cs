@@ -16,7 +16,7 @@ namespace Ludotek.Api.Controllers
         /// </summary>
         /// <param name="model">Le model résultat du Business</param>
         /// <returns>une réponse OK ou une réponse KO</returns>
-        protected IActionResult Result(Ludotheque model)
+        protected IActionResult Result(GlobalModel model)
         {
             if (model.Erreur != null)
             {
@@ -31,7 +31,7 @@ namespace Ludotek.Api.Controllers
         /// </summary>
         /// <param name="models">La demande résultat du Business</param>
         /// <returns>une réponse OK ou une réponse KO</returns>
-        protected IActionResult Result(List<Ludotheque> models)
+        protected IActionResult Result(List<GlobalModel> models)
         {
             var avecErreurs = models.FindAll(x => x.Erreur != null);
 

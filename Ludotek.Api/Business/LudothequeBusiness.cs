@@ -33,7 +33,6 @@ namespace Ludotek.Api.Business
             this.tagDao = tagDao;
         }
 
-
         #region Méthodes publiques
 
         /// <summary>
