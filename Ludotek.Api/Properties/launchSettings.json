@@ -16,7 +16,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Ludothèque.Api": {
+    "Ludotek.Api": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",

@@ -78,17 +78,14 @@ namespace Ludotek.Api.Business
         /// </summary>
         /// <param name="nomItem">l'item recherché</param>
         /// <returns>L'item trouvé</returns>
-        public LudothequeDto Get(string nomItem)
+        public List<LudothequeDto> Get(string nomItem)
         {
             // Apell au Dao
             var result = ludothequeDao.Get(nomItem);
 
             if (result == null)
             {
-                result = new LudothequeDto
-                {
-                    Erreur = CreateErreur("LudoErr01", nomItem)
-                };
+                result = new List<LudothequeDto>();
             }
 
             return result;
@@ -97,10 +94,10 @@ namespace Ludotek.Api.Business
         /// <summary>
         /// Initialise la base de données à partir du fichier init.csv
         /// </summary>
-        public void Process()
+        public void Process(string filenameCsv)
         {
             //Read the contents of CSV file.
-            string csvData = File.ReadAllText(@"Resources\Input\init.csv");
+            string csvData = File.ReadAllText($@"Resources\Input\{filenameCsv}");
 
             //Execute a loop over the rows.
             foreach (string row in csvData.Split("\r\n"))

@@ -61,15 +61,15 @@ namespace Ludotek.Api.Dao
         /// </summary>
         /// <param name="nomItem">l'item recherché</param>
         /// <returns>L'item trouvé</returns>
-        public LudothequeDto Get(string nomItem)
+        public List<LudothequeDto> Get(string nomItem)
         {
-            var result = new LudothequeDto();
+            var result = new List<LudothequeDto>();
 
             result = context.Ludotheque
                 .Where(x => x.NomItem.Contains(nomItem))
                 .Include(e => e.LudoTag)
                 .ThenInclude(e => e.Tag)
-                .FirstOrDefault();
+                .ToList();
 
             return result;
         }

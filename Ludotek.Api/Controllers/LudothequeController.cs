@@ -50,19 +50,19 @@ namespace Ludotek.Api.Controllers
         public IActionResult Get(string nomItem)
         {
             // Appel au business
-            var item = ludothequeBusiness.Get(nomItem);
+            var items = ludothequeBusiness.Get(nomItem);
             // Conversion en model
-            var itemModel = Ludotheque.ToModel(item);
+            var itemsModel = items.ConvertAll(x => Ludotheque.ToModel(x));
 
-            return Result(itemModel);
+            return Result(itemsModel.Cast<GlobalModel>().ToList());
         }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public void Post([FromBody]string filename)
         {
             // Appel au business
-            ludothequeBusiness.Process();
+            ludothequeBusiness.Process(filename);
         }
 
         // PUT api/values/5
