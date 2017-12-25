@@ -12,6 +12,10 @@
     "lib": [ "es6", "dom" ],
     "types": [ "webpack-env" ]
   },
-  "exclude": [ "bin", "node_modules" ],
-  "atom": { "rewriteTsconfig": false }
+  "exclude": [ "bin" ],
+  "atom": { "rewriteTsconfig": false },
+  "include": [
+    "ClientApp/**/*",
+    "node_modules/json-typescript-mapper/libs/utils.ts"
+  ]
 }

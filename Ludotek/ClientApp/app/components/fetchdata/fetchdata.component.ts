@@ -1,23 +1,20 @@
-import { Component, Inject } from '@angular/core';
-import { Http } from '@angular/http';
+import { Component } from '@angular/core';
+import { Item } from '../../models/item.model';
+import { Observable } from 'rxjs/Observable';
+import { FetchDataService } from './fetchdata.service';
 
 @Component({
     selector: 'fetchdata',
     templateUrl: './fetchdata.component.html'
 })
 export class FetchDataComponent {
-    public forecasts: WeatherForecast[];
+    private items: Observable<Array<Item>>;
 
-    constructor(http: Http, @Inject('BASE_URL') baseUrl: string) {
-        http.get(baseUrl + 'api/SampleData/WeatherForecasts').subscribe(result => {
-            this.forecasts = result.json() as WeatherForecast[];
-        }, error => console.error(error));
+    constructor(private ludotheque: FetchDataService) {
+        this.getFullLudotheque();
     }
-}
 
-interface WeatherForecast {
-    dateFormatted: string;
-    temperatureC: number;
-    temperatureF: number;
-    summary: string;
+    getFullLudotheque() {
+        this.items = this.ludotheque.getLudotheque();
+    }
 }

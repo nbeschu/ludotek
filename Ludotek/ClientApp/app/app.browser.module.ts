@@ -19,5 +19,5 @@ export class AppModule {
 }
 
 export function getBaseUrl() {
-    return document.getElementsByTagName('base')[0].href;
+    return "http://localhost:5151/";
 }

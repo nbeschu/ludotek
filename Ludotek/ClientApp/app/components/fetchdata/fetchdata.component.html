@@ -14,11 +14,9 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let forecast of forecasts">
-            <td>{{ forecast.dateFormatted }}</td>
-            <td>{{ forecast.temperatureC }}</td>
-            <td>{{ forecast.temperatureF }}</td>
-            <td>{{ forecast.summary }}</td>
+        <tr *ngFor="let item of items | async">
+            <td>{{ item.nomItem }}</td>
+            <td ngFor="let tag of item.tags">>{{ tag.nomTag }}</td>
         </tr>
     </tbody>
 </table>
