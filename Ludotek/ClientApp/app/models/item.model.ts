@@ -3,13 +3,13 @@ import { JsonProperty } from 'json-typescript-mapper';
 
 export class Item {
     @JsonProperty('nomItem')
-    nomItem: string;
+    public nomItem: string;
 
-    @JsonProperty('tags')
-    tags: Array<Tag>;
+    @JsonProperty({ name: 'tags', clazz: Tag })
+    public tags: Array<Tag>;
 
     constructor() {
-        this.nomItem = "";
-        this.tags = new Array<Tag>();
+        this.nomItem = void 0;
+        this.tags = void 0;
     }
 }

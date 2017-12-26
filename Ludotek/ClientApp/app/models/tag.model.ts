@@ -2,9 +2,9 @@
 
 export class Tag {
     @JsonProperty('nomTag')
-    nomTag: string;
-
+    public nomTag: string;
+    
     constructor() {
-        this.nomTag = "";
+        this.nomTag = void 0;
     }
 }

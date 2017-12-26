@@ -5,12 +5,11 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/c
 @Injectable()
 export class MyHttpInterceptor implements HttpInterceptor {
 
-    constructor( @Inject('BASE_URL') private baseUrl: string) { }
+    constructor(@Inject('API_URL') private baseUrl: string) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        const url = this.baseUrl;
         req = req.clone({
-            url: url + req.url
+            url: this.baseUrl + req.url
         });
         return next.handle(req);
     }

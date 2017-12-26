@@ -17,11 +17,16 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
     ],
     providers: [
         { provide: 'BASE_URL', useFactory: getBaseUrl },
+        { provide: 'API_URL', useFactory: getApiUrl },
         { provide: HTTP_INTERCEPTORS, useClass: MyHttpInterceptor, multi: true },
         FetchDataService
     ]
 })
 export class AppModule {
+}
+
+export function getApiUrl() {
+    return (window as any).url_Config.apiUrl;
 }
 
 export function getBaseUrl() {
