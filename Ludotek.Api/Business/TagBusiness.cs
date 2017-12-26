@@ -46,11 +46,65 @@ namespace Ludotek.Api.Business
         }
 
         /// <summary>
+        /// Retourne les items de la ludothèque correspondant à la recherche
+        /// </summary>
+        /// <param name="nomTag">Le tag recherché</param>
+        /// <returns>Les items trouvés</returns>
+        public List<LudothequeDto> Get(string nomTag)
+        {
+            List<LudothequeDto> result = new List<LudothequeDto>(); ;
+
+            var tag = RecupererTag(nomTag);
+
+            // Si le tag cherché existe -> On cherche les items de ce tag
+            if (tag.Erreur == null)
+            {
+                // On n'a pas d'item à chercher -> On récupère tous les items
+                foreach (var ludoTag in tag.LudoTag)
+                {
+                    result.Add(ludoTag.Ludotheque);
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Retourne les items de la ludothèque correspondant à la recherche
+        /// </summary>
+        /// <param name="nomTag">Le tag recherché</param>
+        /// <param name="nomItem">L'item recherché</param>
+        /// <returns>Les items trouvés</returns>
+        public List<LudothequeDto> Get(string nomTag, string nomItem)
+        {
+            List<LudothequeDto> result = new List<LudothequeDto>(); ;
+
+            var tag = RecupererTag(nomTag);
+
+            // Si le tag cherché existe -> On cherche les items de ce tag
+            if (tag.Erreur == null)
+            {
+                // On a un item à chercher -> on récupère les items correspondants à la recherche
+                foreach (var ludoTag in tag.LudoTag)
+                {
+                    if (ludoTag.Ludotheque.NomItem.ToUpperInvariant().Contains(nomItem.ToUpperInvariant()))
+                    {
+                        result.Add(ludoTag.Ludotheque);
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        #endregion
+
+        /// <summary>
         /// Retourne un tag existant
         /// </summary>
         /// <param name="nomTag">le tag recherché</param>
         /// <returns>Le tag trouvé</returns>
-        public TagDto Get(string nomTag)
+        private TagDto RecupererTag(string nomTag)
         {
             // Apell au Dao
             var result = tagDao.Get(nomTag);
@@ -65,34 +119,5 @@ namespace Ludotek.Api.Business
 
             return result;
         }
-
-        /// <summary>
-        /// Retourne les items de la ludothèque correspondant à la recherche
-        /// </summary>
-        /// <param name="nomTag">Le tag recherché</param>
-        /// <param name="nomItem">L'item recherché</param>
-        /// <returns>Les items trouvés</returns>
-        public List<LudothequeDto> Get(string nomTag, string nomItem)
-        {
-            List<LudothequeDto> result = null;
-
-            var tag = Get(nomTag);
-
-            // Si le tag cherché existe -> On cherche les items de ce tag
-            if (tag.Erreur == null)
-            {
-                result = tagDao.Get(nomTag, nomItem);
-            }
-
-            if (result == null)
-            {
-                result = new List<LudothequeDto>();
-            }
-
-            return result;
-
-        }
-
-        #endregion
     }
 }

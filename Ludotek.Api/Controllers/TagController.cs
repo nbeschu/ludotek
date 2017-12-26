@@ -28,9 +28,9 @@ namespace Ludotek.Api.Controllers
         }
 
         /// <summary>
-        /// Retourne l'intégralité de la ludothèque
+        /// Retourne l'ensemble des tags existants
         /// </summary>
-        /// <returns>L'intégralité de la ludothèque</returns>
+        /// <returns>L'ensemble des tags existants</returns>
         [HttpGet]
         public IActionResult Get()
         {
@@ -43,11 +43,28 @@ namespace Ludotek.Api.Controllers
         }
 
         /// <summary>
+        /// Retourne l'ensemble des items d'un tag donné
+        /// </summary>
+        /// <param name="nomTag">Le tag à chercher</param>
+        /// <returns>L'ensemble des items du tag</returns>
+        [HttpGet]
+        [Route("{nomTag}/items")]
+        public IActionResult Get(string nomTag)
+        {
+            // Appel au business
+            var items = tagBusiness.Get(nomTag);
+            // Conversion en model
+            var itemsModel = items.ConvertAll(x => Ludotheque.ToModel(x));
+
+            return Result(itemsModel.Cast<GlobalModel>().ToList());
+        }
+
+        /// <summary>
         /// Retourne l'intégralité de la ludothèque
         /// </summary>
         /// <returns>L'intégralité de la ludothèque</returns>
         [HttpGet]
-        [Route("{nomTag}/item/{nomItem}")]
+        [Route("{nomTag}/items/{nomItem}")]
         public IActionResult Get(string nomTag, string nomItem)
         {
             // Appel au business
