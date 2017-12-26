@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Item } from '../../models/item.model';
 import { Observable } from 'rxjs/Observable';
 import { FetchDataService } from '../../services/fetchdata.service';
@@ -7,24 +7,16 @@ import { FetchDataService } from '../../services/fetchdata.service';
     selector: 'fetchdata',
     templateUrl: './fetchdata.component.html'
 })
-export class FetchDataComponent {
-    items: Array<Item>;
+export class FetchDataComponent implements OnInit {
+    items: Observable<Array<Item>>;
 
-    constructor(private ludotheque: FetchDataService) { }
+    constructor(private ludotheque: FetchDataService) { };
 
     ngOnInit() {
-        this.getFullLudotheque();
-    }
+        this.getLudotheque();
+    };
 
-    getFullLudotheque() {
-        this.ludotheque.getLudotheque().subscribe(
-            data => {
-                console.log(data);
-                this.items = data;
-            },
-            err => {
-                console.log(err);
-            }
-        );
-    }
+    getLudotheque() {
+        this.items = this.ludotheque.getLudotheque();
+    };
 }
