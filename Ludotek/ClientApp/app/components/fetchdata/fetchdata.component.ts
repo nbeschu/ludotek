@@ -8,20 +8,23 @@ import { FetchDataService } from '../../services/fetchdata.service';
     templateUrl: './fetchdata.component.html'
 })
 export class FetchDataComponent {
-    private items: Array<Item>;
+    items: Array<Item>;
 
-    constructor(private ludotheque: FetchDataService) {
-    }
+    constructor(private ludotheque: FetchDataService) { }
 
     ngOnInit() {
         this.getFullLudotheque();
-
-        console.log(this.items);
     }
 
     getFullLudotheque() {
-        this.ludotheque.getLudotheque().subscribe(data => {
-            this.items = data
-        });
+        this.ludotheque.getLudotheque().subscribe(
+            data => {
+                console.log(data);
+                this.items = data;
+            },
+            err => {
+                console.log(err);
+            }
+        );
     }
 }
