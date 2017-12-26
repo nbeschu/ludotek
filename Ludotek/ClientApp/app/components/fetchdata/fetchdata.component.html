@@ -1,9 +1,13 @@
 <h1>Recherche</h1>
 
 <form (submit)="getLudotheque(searchedItem.value)">
-    <input #searchedItem placeholder="ex: Final fantasy" />
-    <button type="submit">Rechercher</button>
+    <div class="col-xs-3" style="padding-left: 0px;">
+        <input #searchedItem placeholder="ex: Final fantasy" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Rechercher</button>
 </form>
+
+<p></p>
 
 <table class='table' *ngIf="items">
     <thead>
@@ -13,8 +17,16 @@
     </thead>
     <tbody>
         <tr *ngFor="let item of items | async">
-            <td>{{ item.nomItem }}</td>
-            <!--<td ngFor="let tag of item.tags">>{{ tag.nomTag }}</td>-->
+            <td>
+                {{ item.nomItem }}
+                <div>
+                    <ng-container *ngFor="let tag of item.tags">
+                        <span class="badge" style="font-size: 75%">
+                            {{tag.nomTag}}
+                        </span>
+                    </ng-container>
+                </div>
+            </td>
         </tr>
     </tbody>
 </table>

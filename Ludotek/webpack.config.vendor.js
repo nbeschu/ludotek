@@ -12,6 +12,8 @@ const treeShakableModules = [
     '@angular/platform-browser',
     '@angular/platform-browser-dynamic',
     '@angular/router',
+    "@angular/material",
+    "@angular/material/prebuilt-themes/deeppurple-amber.css",
     'zone.js',
 ];
 const nonTreeShakableModules = [
