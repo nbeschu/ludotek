@@ -48,5 +48,34 @@ namespace Ludotek.Api.Dao
 
             return result;
         }
+
+        /// <summary>
+        /// Retourne les items de la ludothèque correspondant à la recherche
+        /// </summary>
+        /// <param name="nomTag">Le tag recherché</param>
+        /// <param name="nomItem">L'item recherché</param>
+        /// <returns>Les items trouvés</returns>
+        public List<LudothequeDto> Get(string nomTag, string nomItem)
+        {
+            var result = context.Tag
+                .Where(x => x.NomTag == nomTag)
+                .Include(e => e.LudoTag)
+                .ThenInclude(e => e.Ludotheque)
+                .FirstOrDefault();
+
+
+            var listItems = new List<LudothequeDto>();
+
+            // On récupère les items correspondants à la recherche
+            foreach (var ludoTag in result.LudoTag)
+            {
+                if (ludoTag.Ludotheque.NomItem.ToUpperInvariant().Contains(nomItem.ToUpperInvariant()))
+                {
+                    listItems.Add(ludoTag.Ludotheque);
+                }
+            }
+
+            return listItems;
+        }
     }
 }

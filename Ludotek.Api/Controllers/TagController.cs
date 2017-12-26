@@ -41,5 +41,21 @@ namespace Ludotek.Api.Controllers
 
             return Result(itemsModel.Cast<GlobalModel>().ToList());
         }
+
+        /// <summary>
+        /// Retourne l'intégralité de la ludothèque
+        /// </summary>
+        /// <returns>L'intégralité de la ludothèque</returns>
+        [HttpGet]
+        [Route("{nomTag}/item/{nomItem}")]
+        public IActionResult Get(string nomTag, string nomItem)
+        {
+            // Appel au business
+            var items = tagBusiness.Get(nomTag, nomItem);
+            // Conversion en model
+            var itemsModel = items.ConvertAll(x => Ludotheque.ToModel(x));
+
+            return Result(itemsModel.Cast<GlobalModel>().ToList());
+        }
     }
 }

@@ -66,6 +66,33 @@ namespace Ludotek.Api.Business
             return result;
         }
 
+        /// <summary>
+        /// Retourne les items de la ludothèque correspondant à la recherche
+        /// </summary>
+        /// <param name="nomTag">Le tag recherché</param>
+        /// <param name="nomItem">L'item recherché</param>
+        /// <returns>Les items trouvés</returns>
+        public List<LudothequeDto> Get(string nomTag, string nomItem)
+        {
+            List<LudothequeDto> result = null;
+
+            var tag = Get(nomTag);
+
+            // Si le tag cherché existe -> On cherche les items de ce tag
+            if (tag.Erreur == null)
+            {
+                result = tagDao.Get(nomTag, nomItem);
+            }
+
+            if (result == null)
+            {
+                result = new List<LudothequeDto>();
+            }
+
+            return result;
+
+        }
+
         #endregion
     }
 }

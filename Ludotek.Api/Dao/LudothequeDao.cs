@@ -57,10 +57,10 @@ namespace Ludotek.Api.Dao
         }
 
         /// <summary>
-        /// Retourne un item de la ludothèque
+        /// Retourne les items de la ludothèque correspondant à la recherche
         /// </summary>
         /// <param name="nomItem">l'item recherché</param>
-        /// <returns>L'item trouvé</returns>
+        /// <returns>Les items trouvés</returns>
         public List<LudothequeDto> Get(string nomItem)
         {
             var result = new List<LudothequeDto>();
