@@ -9,8 +9,8 @@ import 'rxjs/add/operator/map';
 export class FetchDataService {
     constructor(private http: HttpClient) {}
 
-    getLudotheque(): Observable<Array<Item>> {
-        return this.http.get('api/Ludotheque')
+    getLudotheque(searchedItem: string): Observable<Array<Item>> {
+        return this.http.get('api/Ludotheque/' + searchedItem)
             .map((result: Array<Object>) => result.map((item: Object) => deserialize(Item, item)));
     }
 }

@@ -1,6 +1,9 @@
 <h1>Recherche</h1>
 
-<p *ngIf="!items"><em>Loading...</em></p>
+<form (submit)="getLudotheque(searchedItem.value)">
+    <input #searchedItem placeholder="ex: Final fantasy" />
+    <button type="submit">Rechercher</button>
+</form>
 
 <table class='table' *ngIf="items">
     <thead>

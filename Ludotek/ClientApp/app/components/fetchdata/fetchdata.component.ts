@@ -13,10 +13,9 @@ export class FetchDataComponent implements OnInit {
     constructor(private ludotheque: FetchDataService) { };
 
     ngOnInit() {
-        this.getLudotheque();
     };
 
-    getLudotheque() {
-        this.items = this.ludotheque.getLudotheque();
+    getLudotheque(searchedItem: string) {
+        this.items = this.ludotheque.getLudotheque(searchedItem);
     };
 }
