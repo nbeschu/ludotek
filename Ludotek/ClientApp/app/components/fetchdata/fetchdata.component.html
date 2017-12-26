@@ -5,6 +5,17 @@
         <input #searchedItem placeholder="ex: Final fantasy" class="form-control" />
     </div>
     <button type="submit" class="btn btn-primary">Rechercher</button>
+    <table>
+        <tbody>
+            <tr *ngFor="let existingTag of existingTags | async">
+                <td>
+                    <input type="radio" name="radiogroup"
+                           [value]="existingTag.nomtag"
+                           (change)="onSelectionChange(existingTag)"> {{existingTag.nomTag}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </form>
 
 <p></p>
