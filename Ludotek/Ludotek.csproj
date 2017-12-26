@@ -24,10 +24,12 @@
     <None Remove="ClientApp\app\components\fetchdata\fetchdata.service.ts" />
     <None Remove="ClientApp\app\models\item.model.ts" />
     <None Remove="ClientApp\app\models\tag.model.ts" />
+    <None Remove="ClientApp\app\services\httpinterceptor.service.ts" />
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\app\components\fetchdata\fetchdata.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\httpinterceptor.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\fetchdata.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\tag.model.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\item.model.ts" />
   </ItemGroup>
