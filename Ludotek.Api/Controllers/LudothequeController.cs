@@ -57,15 +57,12 @@ namespace Ludotek.Api.Controllers
             return Result(itemsModel.Cast<GlobalModel>().ToList());
         }
 
-        // POST api/values
         [HttpPost]
         public void Post([FromBody]string filename)
         {
-            // Appel au business
-            ludothequeBusiness.Process(filename);
+            //TODO
         }
 
-        // PUT api/values/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]Ludotheque item)
         {
@@ -75,10 +72,10 @@ namespace Ludotek.Api.Controllers
             ludothequeBusiness.UpdateItem(id, itemDto);
         }
 
-        // DELETE api/values/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            //TODO
         }
     }
 }

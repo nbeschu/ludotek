@@ -33,7 +33,7 @@ namespace Ludotek.Api.Dao
             result = context.Ludotheque
                 .Include(e => e.LudoTag)
                 .ThenInclude(e => e.Tag)
-                .OrderByDescending(x => x.NomItem)
+                .OrderBy(x => x.NomItem)
                 .ToList();
 
             return result;
@@ -70,7 +70,7 @@ namespace Ludotek.Api.Dao
                 .Where(x => x.NomItem.Contains(nomItem))
                 .Include(e => e.LudoTag)
                 .ThenInclude(e => e.Tag)
-                .OrderByDescending(x => x.NomItem)
+                .OrderBy(x => x.NomItem)
                 .ToList();
 
             return result;
