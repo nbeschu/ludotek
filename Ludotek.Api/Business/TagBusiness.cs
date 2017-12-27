@@ -73,7 +73,7 @@ namespace Ludotek.Api.Business
         /// Retourne les items de la ludothèque correspondant à la recherche
         /// </summary>
         /// <param name="nomTag">Le tag recherché</param>
-        /// <param name="nomItem">L'item recherché</param>
+        /// <param name="nomItem">Le nom d'item recherché</param>
         /// <returns>Les items trouvés</returns>
         public List<LudothequeDto> Get(string nomTag, string nomItem)
         {

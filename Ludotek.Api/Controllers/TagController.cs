@@ -14,7 +14,7 @@ namespace Ludotek.Api.Controllers
     public class TagController : GlobalController
     {
         /// <summary>
-        /// Le business Raccordement
+        /// Le business Tag
         /// </summary>
         private readonly TagBusiness tagBusiness;
 
@@ -60,9 +60,11 @@ namespace Ludotek.Api.Controllers
         }
 
         /// <summary>
-        /// Retourne l'intégralité de la ludothèque
+        /// Retourne les items à partir d'un nom et d'un tag donnés
         /// </summary>
-        /// <returns>L'intégralité de la ludothèque</returns>
+        /// <param name="nomTag">Le tag à chercher</param>
+        /// <param name="nomItem">Le nom d'item</param>
+        /// <returns>Les items du tag et du nom donnés</returns>
         [HttpGet]
         [Route("{nomTag}/items/{nomItem}")]
         public IActionResult Get(string nomTag, string nomItem)

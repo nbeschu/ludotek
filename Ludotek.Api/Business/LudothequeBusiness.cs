@@ -46,6 +46,7 @@ namespace Ludotek.Api.Business
 
             if (result == null)
             {
+                // Pas d'item trouvé -> On renvoi une liste vide
                 result = new List<LudothequeDto>();
             }
 
@@ -53,31 +54,10 @@ namespace Ludotek.Api.Business
         }
 
         /// <summary>
-        /// Retourne un item de la ludothèque
+        /// Retourne une liste d'item correspondant au nom cherché
         /// </summary>
-        /// <param name="id">l'item recherché</param>
-        /// <returns>L'item trouvé</returns>
-        public LudothequeDto Get(int id)
-        {
-            // Apell au Dao
-            var result = ludothequeDao.Get(id);
-
-            if (result == null)
-            {
-                result = new LudothequeDto
-                {
-                    Erreur = CreateErreur("LudoErr01", id.ToString())
-                };
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Retourne un item de la ludothèque
-        /// </summary>
-        /// <param name="nomItem">l'item recherché</param>
-        /// <returns>L'item trouvé</returns>
+        /// <param name="nomItem">Le nom recherché</param>
+        /// <returns>La liste des items trouvés</returns>
         public List<LudothequeDto> Get(string nomItem)
         {
             // Apell au Dao
@@ -85,39 +65,11 @@ namespace Ludotek.Api.Business
 
             if (result == null)
             {
+                // Pas d'item trouvé -> On renvoi une liste vide
                 result = new List<LudothequeDto>();
             }
 
             return result;
-        }
-
-        /// <summary>
-        /// Initialise la base de données à partir du fichier init.csv
-        /// </summary>
-        public void Process(string filenameCsv)
-        {
-            //Read the contents of CSV file.
-            string csvData = File.ReadAllText($@"Resources\Input\{filenameCsv}");
-
-            //Execute a loop over the rows.
-            foreach (string row in csvData.Split("\r\n"))
-            {
-                if (!string.IsNullOrEmpty(row))
-                {
-                    int index = row.IndexOf(';');
-                    string inputItem = row.Substring(0, index);
-                    string inputTags = row.Substring(index + 1);
-
-                    // Vérification de l'existance de l'item
-                    var item = ludothequeDao.GetForCreate(inputItem);
-
-                    if (item == null)
-                    {
-                        // Nouvel item -> On crée de 0
-                        Insert(inputItem, inputTags);
-                    }
-                }
-            }
         }
 
         /// <summary>
@@ -151,6 +103,27 @@ namespace Ludotek.Api.Business
         #region Méthodes privées
 
         /// <summary>
+        /// Retourne un item de la ludothèque
+        /// </summary>
+        /// <param name="id">l'item recherché</param>
+        /// <returns>L'item trouvé</returns>
+        private LudothequeDto Get(int id)
+        {
+            // Apell au Dao
+            var result = ludothequeDao.Get(id);
+
+            if (result == null)
+            {
+                result = new LudothequeDto
+                {
+                    Erreur = CreateErreur("LudoErr01", id.ToString())
+                };
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// Met à jour un item existant
         /// </summary>
         /// <param name="fromBdd">L'item existant</param>
@@ -179,7 +152,7 @@ namespace Ludotek.Api.Business
                 itemTags.Add(new LudoTagDto
                 {
                     Ludotheque = item,
-                    Tag = CheckTag(tag)
+                    //Tag = CheckTag(tag) TODO : vérifier l'existence du tag
                 });
             }
 
@@ -188,54 +161,6 @@ namespace Ludotek.Api.Business
 
             // Maj en BDD
             ludothequeDao.Update(item);
-        }
-
-        private void Insert(string inputItem, string inputTags)
-        {
-            // Construction de l'item
-            var item = new LudothequeDto
-            {
-                NomItem = inputItem
-            };
-
-            // Construction des tags
-            var itemTags = new List<LudoTagDto>();
-            var tags = inputTags.Split(';');
-
-            foreach (var tag in tags)
-            {
-                itemTags.Add(new LudoTagDto
-                {
-                    Ludotheque = item,
-                    Tag = CheckTag(tag)
-                });
-            }
-
-            //On ajoute les tags à l'item
-            item.LudoTag = itemTags;
-
-            // Ajout de l'item en BDD
-            ludothequeDao.Insert(item);
-        }
-
-        /// <summary>
-        /// Retourne ou crée le tag cherché s'il n'existe pas
-        /// </summary>
-        /// <param name="inputTag">Le tag cherché</param>
-        /// <returns>Le tag</returns>
-        private TagDto CheckTag(string inputTag)
-        {
-            var tag = tagDao.Get(inputTag);
-
-            if (tag == null)
-            {
-                tag = new TagDto
-                {
-                    NomTag = inputTag
-                };
-            }
-
-            return tag;
         }
 
         #endregion

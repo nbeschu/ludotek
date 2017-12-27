@@ -13,7 +13,7 @@ namespace Ludotek.Api.Controllers
     public class LudothequeController : GlobalController
     {
         /// <summary>
-        /// Le business Raccordement
+        /// Le business Ludotheque
         /// </summary>
         private readonly LudothequeBusiness ludothequeBusiness;
 

@@ -33,6 +33,7 @@ namespace Ludotek.Api.Dao
             result = context.Ludotheque
                 .Include(e => e.LudoTag)
                 .ThenInclude(e => e.Tag)
+                .OrderByDescending(x => x.NomItem)
                 .ToList();
 
             return result;
@@ -69,13 +70,14 @@ namespace Ludotek.Api.Dao
                 .Where(x => x.NomItem.Contains(nomItem))
                 .Include(e => e.LudoTag)
                 .ThenInclude(e => e.Tag)
+                .OrderByDescending(x => x.NomItem)
                 .ToList();
 
             return result;
         }
 
         /// <summary>
-        /// Retourne un item de la ludothèque
+        /// Retourne un item de la ludothèque en vu d'une création
         /// </summary>
         /// <param name="nomItem">l'item recherché</param>
         /// <returns>L'item trouvé</returns>
@@ -93,9 +95,9 @@ namespace Ludotek.Api.Dao
         }
 
         /// <summary>
-        /// Ajoute une liste item avec leurs tags
+        /// Ajoute une item avec ses tags
         /// </summary>
-        /// <param name="itemTags">La liste item avec leurs tags</param>
+        /// <param name="item">L'item avec ses tags</param>
         public void Insert(LudothequeDto item)
         {
             context.Ludotheque.Add(item);
