@@ -27,7 +27,7 @@ export class AppModule {
 }
 
 export function getApiUrl() {
-    return 'http://localhost:5151/';
+    return 'http://109.10.33.214:5151/';
 }
 
 export function getBaseUrl() {
