@@ -2,12 +2,10 @@
 @inject IConfiguration Configuration
 
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "";
 }
 
-<app asp-prerender-module="ClientApp/dist/main-server"
-     asp-prerender-data='new {
-    apiUrl = Configuration["ApiAddress"]}'>Loading...</app>
+<app>Loading...</app>
 
 <script src="~/dist/vendor.js" asp-append-version="true"></script>
 @section scripts {

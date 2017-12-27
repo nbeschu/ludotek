@@ -23,7 +23,6 @@ export class FetchDataComponent implements OnInit {
 
     onSelectionChange(tag: Tag) {
         this.selectedTag = tag.nomTag;
-        console.log(this.selectedTag);
     }
 
     getLudotheque(searchedItem: string) {
