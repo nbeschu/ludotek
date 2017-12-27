@@ -44,6 +44,7 @@ namespace Ludotek.Api
             // Enregistrement des Business
             services.AddScoped(typeof(LudothequeBusiness));
             services.AddScoped(typeof(TagBusiness));
+            services.AddScoped(typeof(ImportBusiness));
         }
 
         /// <summary>
