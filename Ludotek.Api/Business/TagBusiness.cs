@@ -9,8 +9,13 @@ using System.Threading.Tasks;
 
 namespace Ludotek.Api.Business
 {
-    public class TagBusiness : Business<LudothequeBusiness>
+    public class TagBusiness : Business<TagBusiness>
     {
+        /// <summary>
+        /// Le Dao Ludotheque
+        /// </summary>
+        private readonly LudothequeDao ludothequeDao;
+
         /// <summary>
         /// Le Dao Tag
         /// </summary>
@@ -20,9 +25,11 @@ namespace Ludotek.Api.Business
         /// Constructeur avec injection de dépendance
         /// </summary>
         /// <param name="business">la classe business injectée</param>
-        public TagBusiness(IStringLocalizer<LudothequeBusiness> localizer,
+        public TagBusiness(IStringLocalizer<TagBusiness> localizer,
+            LudothequeDao ludothequeDao,
             TagDao tagDao) : base(localizer)
         {
+            this.ludothequeDao = ludothequeDao;
             this.tagDao = tagDao;
         }
 
@@ -52,19 +59,8 @@ namespace Ludotek.Api.Business
         /// <returns>Les items trouvés</returns>
         public List<LudothequeDto> Get(string nomTag)
         {
-            List<LudothequeDto> result = new List<LudothequeDto>(); ;
-
-            var tag = RecupererTag(nomTag);
-
-            // Si le tag cherché existe -> On cherche les items de ce tag
-            if (tag.Erreur == null)
-            {
-                // On n'a pas d'item à chercher -> On récupère tous les items
-                foreach (var ludoTag in tag.LudoTag)
-                {
-                    result.Add(ludoTag.Ludotheque);
-                }
-            }
+            var items = ludothequeDao.Get();
+            var result = FindItemsByTag(nomTag, items);
 
             return result;
         }
@@ -77,20 +73,35 @@ namespace Ludotek.Api.Business
         /// <returns>Les items trouvés</returns>
         public List<LudothequeDto> Get(string nomTag, string nomItem)
         {
-            List<LudothequeDto> result = new List<LudothequeDto>(); ;
+            var items = ludothequeDao.Get(nomItem);
+            var result = FindItemsByTag(nomTag, items);
 
-            var tag = RecupererTag(nomTag);
+            return result;
+        }
 
-            // Si le tag cherché existe -> On cherche les items de ce tag
-            if (tag.Erreur == null)
+        #endregion
+
+        #region Méthodes privées
+
+        /// <summary>
+        /// Retourne la liste des items d'un tag donné contenu dans la liste d'items
+        /// </summary>
+        /// <param name="nomTag">Le tag cherché</param>
+        /// <param name="items">La liste d'items à parcourir</param>
+        /// <returns>La liste des items du tag donné</returns>
+        private static List<LudothequeDto> FindItemsByTag(string nomTag, List<LudothequeDto> items)
+        {
+            List<LudothequeDto> result = new List<LudothequeDto>();
+
+            // Si des items sont retournés-> On cherche les items de ce tag
+            if (items != null)
             {
-                // On a un item à chercher -> on récupère les items correspondants à la recherche
-                foreach (var ludoTag in tag.LudoTag)
+                foreach (var item in items)
                 {
-                    if (ludoTag.Ludotheque.NomItem.ToUpperInvariant().Contains(nomItem.ToUpperInvariant()))
-                    {
-                        result.Add(ludoTag.Ludotheque);
-                    }
+                    var list = item.LudoTag.Where(x => x.Tag.NomTag.ToUpperInvariant() == nomTag.ToUpperInvariant())
+                        .Select(x => x.Ludotheque);
+
+                    result.AddRange(list);
                 }
             }
 
@@ -98,26 +109,5 @@ namespace Ludotek.Api.Business
         }
 
         #endregion
-
-        /// <summary>
-        /// Retourne un tag existant
-        /// </summary>
-        /// <param name="nomTag">le tag recherché</param>
-        /// <returns>Le tag trouvé</returns>
-        private TagDto RecupererTag(string nomTag)
-        {
-            // Apell au Dao
-            var result = tagDao.Get(nomTag);
-
-            if (result == null)
-            {
-                result = new TagDto
-                {
-                    Erreur = CreateErreur("TagErr01", nomTag)
-                };
-            }
-
-            return result;
-        }
     }
 }

@@ -28,9 +28,7 @@ namespace Ludotek.Api.Dao
         /// <returns>L'intégralité de la ludothèque</returns>
         public List<LudothequeDto> Get()
         {
-            var result = new List<LudothequeDto>();
-
-            result = context.Ludotheque
+            var result = context.Ludotheque
                 .Include(e => e.LudoTag)
                 .ThenInclude(e => e.Tag)
                 .OrderBy(x => x.NomItem)
