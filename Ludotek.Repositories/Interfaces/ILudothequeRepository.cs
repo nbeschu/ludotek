@@ -23,6 +23,13 @@ namespace Ludotek.Repositories.Interfaces
         /// <param name="nomItem">l'item recherché</param>
         /// <returns>Les items trouvés</returns>
         List<Item> Get(string nomItem);
+        
+        /// <summary>
+        /// Retourne les items de la ludothèque du type donné
+        /// </summary>
+        /// <returns>Les items de la ludothèque du type donnéelle</returns>
+        List<Item> GetByType(string type);
+
 
         /// <summary>
         /// Retourne un item de la ludothèque en vu d'une création
@@ -36,6 +43,12 @@ namespace Ludotek.Repositories.Interfaces
         /// </summary>
         /// <param name="item">L'item avec ses tags</param>
         void Insert(Item item);
+
+        /// <summary>
+        /// Ajoute une liste d'item à la ludothèque
+        /// </summary>
+        /// <param name="items">Les items avec ses tags</param>
+        void Insert(List<Item> items);
 
         /// <summary>
         /// Met à jour un item avec ses tags

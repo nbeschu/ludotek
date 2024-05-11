@@ -33,16 +33,34 @@ namespace LudotekV2.Controllers
         public IActionResult Index()
         {
             // Appel au business
-            List<ItemDto> items = _ludothequeService.Get();
+            List<ItemDto> items = _ludothequeService.GetByType("Jeu vidéo");
 
             List<ItemViewModel> itemsModel = _mapper.Map<List<ItemViewModel>>(items);
 
             return View(itemsModel);
         }
 
-        public IActionResult Privacy()
+        public IActionResult FilmsSeries()
         {
-            return View();
+            // Appel au business
+            List<ItemDto> films = _ludothequeService.GetByType("Film");
+            List<ItemDto> series = _ludothequeService.GetByType("Série");
+
+            List<ItemDto> items = [.. films, .. series];
+
+            List<ItemViewModel> itemsModel = _mapper.Map<List<ItemViewModel>>(items);
+
+            return View(itemsModel);
+        }
+
+        public IActionResult Animes()
+        {
+            // Appel au business
+            List<ItemDto> items = _ludothequeService.GetByType("Anime");
+
+            List<ItemViewModel> itemsModel = _mapper.Map<List<ItemViewModel>>(items);
+
+            return View(itemsModel);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

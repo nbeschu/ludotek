@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
-using Ludotek.Repositories;
+using CsvHelper.Configuration;
+using CsvHelper;
 using Ludotek.Repositories.Interfaces;
 using Ludotek.Repositories.Models;
 using Ludotek.Services.Dto;
 using Microsoft.Extensions.Localization;
+using System.Globalization;
 
 namespace Ludotek.Services.Services
 {
@@ -61,6 +63,34 @@ namespace Ludotek.Services.Services
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Initialise la base de données à partir du fichier init.csv
+        /// </summary>
+        public void ImportDatabase(string filenameCsv)
+        {
+            List<ItemDto> items = new();
+
+            // Chemin vers le fichier CSV
+            string cheminFichierCSV = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "Input", filenameCsv);
+
+            CsvConfiguration configuration = new CsvConfiguration(CultureInfo.InvariantCulture)
+            {
+                Delimiter = ";"
+            };
+
+            // Lecture du CSV
+            using (StreamReader reader = new StreamReader(cheminFichierCSV))
+            using (CsvReader csvReader = new CsvReader(reader, configuration))
+            {
+                csvReader.Context.RegisterClassMap<ItemDtoMap>();
+                items = csvReader.GetRecords<ItemDto>().ToList();
+            }
+
+            // Ajout des items en BDD
+            var itemsModel = _mapper.Map<List<Item>>(items);
+            ludothequeRepository.Insert(itemsModel);
         }
 
         #endregion

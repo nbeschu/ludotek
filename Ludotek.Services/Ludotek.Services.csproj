@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="CsvHelper" Version="32.0.2" />
     <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="8.0.4" />
   </ItemGroup>
 
@@ -18,10 +19,18 @@
   <ItemGroup>
     <EmbeddedResource Update="Resources\Services.Services.LudothequeService.fr.resx">
       <Generator>ResXFileCodeGenerator</Generator>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Services.Services.TagService.fr.resx">
       <Generator>ResXFileCodeGenerator</Generator>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Resources\Input\full.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

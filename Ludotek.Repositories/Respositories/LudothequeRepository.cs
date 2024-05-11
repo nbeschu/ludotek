@@ -35,6 +35,21 @@ namespace Ludotek.Repositories.Respositories
         }
 
         /// <summary>
+        /// Retourne les items de la ludothèque du type donné
+        /// </summary>
+        /// <returns>Les items de la ludothèque du type donnée</returns>
+        public List<Item> GetByType(string type)
+        {
+            var result = context.Items
+                .Include(e => e.Tags)
+                .OrderBy(x => x.Nom)
+                .Where(x => x.Type == type)
+                .ToList();
+
+            return result;
+        }
+
+        /// <summary>
         /// Retourne un item de la ludothèque
         /// </summary>
         /// <param name="id">l'item recherché</param>
@@ -93,6 +108,16 @@ namespace Ludotek.Repositories.Respositories
         public void Insert(Item item)
         {
             context.Items.Add(item);
+            context.SaveChanges();
+        }
+
+        /// <summary>
+        /// Ajoute une liste d'item à la ludothèque
+        /// </summary>
+        /// <param name="items">Les items avec ses tags</param>
+        public void Insert(List<Item> items)
+        {
+            context.Items.AddRange(items);
             context.SaveChanges();
         }
 

@@ -54,6 +54,26 @@ namespace Ludotek.Services.Services
         }
 
         /// <summary>
+        /// Retourne les items de la ludothèque du type donné
+        /// </summary>
+        /// <returns>Les items de la ludothèque du type donnée</returns>
+        public List<ItemDto> GetByType(string type)
+        {
+            // Appel au Repository
+            List<Item> ludothequeModel = ludothequeRepository.GetByType(type);
+
+            if (ludothequeModel == null)
+            {
+                // Pas d'item trouvé -> On renvoi une liste vide
+                return new List<ItemDto>();
+            }
+
+            var ludotheque = _mapper.Map<List<ItemDto>>(ludothequeModel);
+
+            return ludotheque;
+        }
+
+        /// <summary>
         /// Retourne une liste d'item correspondant au nom cherché
         /// </summary>
         /// <param name="nomItem">Le nom recherché</param>

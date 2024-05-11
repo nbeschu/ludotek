@@ -1,6 +1,6 @@
 using Ludotek.Repositories.Context;
+using Ludotek.Services;
 using Microsoft.EntityFrameworkCore;
-using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +17,7 @@ builder.Services.RegisterRepositories();
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 
 builder.Services.AddDbContext<LudotekContext>(options =>
-  options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultDatabase")));
+  options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultDatabase")));
 
 var app = builder.Build();
 
@@ -43,5 +43,14 @@ app.MapControllerRoute(
 using var scope = app.Services.CreateScope();
 using var dbContext = scope.ServiceProvider.GetRequiredService<LudotekContext>();
 dbContext.Database.Migrate();
+
+var ludotekService = scope.ServiceProvider.GetRequiredService<ILudothequeService>();
+var collection = ludotekService.Get();
+
+if (collection == null || !collection.Any())
+{
+    var importService = scope.ServiceProvider.GetRequiredService<IImportService>();
+    importService.ImportDatabase("full.csv");
+}
 
 app.Run();

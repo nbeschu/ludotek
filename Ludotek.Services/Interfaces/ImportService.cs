@@ -6,5 +6,10 @@
         /// Initialise la base de données à partir du fichier init.csv
         /// </summary>
         void Process(string filenameCsv);
+
+        /// <summary>
+        /// Initialise la base de données à partir du fichier init.csv
+        /// </summary>
+        void ImportDatabase(string filenameCsv);
     }
 }
