@@ -8,14 +8,16 @@ namespace LudotekV2.Profiles
 {
     public class LudotekProfile : Profile
     {
-        public LudotekProfile() 
+        public LudotekProfile()
         {
             CreateMap<ItemDto, Item>().ReverseMap();
             CreateMap<TagDto, Tag>().ReverseMap();
             CreateMap<ItemTagDto, ItemTag>().ReverseMap();
 
             CreateMap<ErreurDto, Erreur>().ReverseMap();
-            CreateMap<ItemDto, ItemViewModel>().ReverseMap();
+            CreateMap<ItemDto, ItemViewModel>()
+                .ForMember(dest => dest.IsTermine, opt => opt.MapFrom(src => src.IsTermine ? "Oui" : "Non"))
+                .ReverseMap();
             CreateMap<TagDto, TagViewModel>().ReverseMap();
         }
     }

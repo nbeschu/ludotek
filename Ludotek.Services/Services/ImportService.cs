@@ -90,7 +90,7 @@ namespace Ludotek.Services.Services
 
             // Ajout des items en BDD
             var itemsModel = _mapper.Map<List<Item>>(items);
-            ludothequeRepository.Insert(itemsModel);
+            ludothequeRepository.Upsert(itemsModel);
         }
 
         #endregion

@@ -26,6 +26,12 @@
         public string Plateforme { get; set; }
 
         /// <summary>
+        /// Est-ce que le jeu est terminé ?
+        /// </summary>
+        /// <remarks>Valorisé uniquement pour les items de Type = "Jeu vidéo"</remarks>
+        public bool IsTermine { get; set; }
+
+        /// <summary>
         /// Relation table de jointure
         /// </summary>
         public List<TagDto> Tags { get; set; } = new();

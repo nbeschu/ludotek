@@ -18,12 +18,14 @@
            data-page-list="[5, 10, 25, 50, All]"
            data-sortable="true"
            data-search="true"
+           data-search-align="left"
            data-filter-control="true"
            data-sort-select-options="true">
         <thead>
             <tr>
                 <th data-field="nom" data-sortable="true">Nom</th>
                 <th data-field="plateforme" data-filter-control="select">Plateforme</th>
+                <th data-field="isTermine" data-filter-control="select">Terminé ?</th>
             </tr>
         </thead>
         <tbody>
@@ -32,6 +34,7 @@
                 <tr>
                     <td>@item.Nom</td>
                     <td>@item.Plateforme</td>
+                    <td>@item.IsTermine</td>
                 </tr>
             }
         </tbody>

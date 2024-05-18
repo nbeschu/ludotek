@@ -1,4 +1,5 @@
 using Ludotek.Repositories.Context;
+using Ludotek.Repositories.Interfaces;
 using Ludotek.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -44,12 +45,15 @@ using var scope = app.Services.CreateScope();
 using var dbContext = scope.ServiceProvider.GetRequiredService<LudotekContext>();
 dbContext.Database.Migrate();
 
-var ludotekService = scope.ServiceProvider.GetRequiredService<ILudothequeService>();
-var collection = ludotekService.Get();
+var ludotekRepository = scope.ServiceProvider.GetRequiredService<ILudothequeRepository>();
+var importService = scope.ServiceProvider.GetRequiredService<IImportService>();
 
-if (collection == null || !collection.Any())
+if (ludotekRepository.HasItems())
 {
-    var importService = scope.ServiceProvider.GetRequiredService<IImportService>();
+    importService.ImportDatabase("delta.csv");
+}
+else
+{
     importService.ImportDatabase("full.csv");
 }
 

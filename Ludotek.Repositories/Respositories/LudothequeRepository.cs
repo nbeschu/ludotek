@@ -21,6 +21,15 @@ namespace Ludotek.Repositories.Respositories
         }
 
         /// <summary>
+        /// Vérifie s'il existe des items dans la ludothèque
+        /// </summary>
+        /// <returns>True s'il existe des items dans la ludothèque, false sinon</returns>
+        public bool HasItems()
+        {
+            return context.Items.Count() > 0;
+        }
+
+        /// <summary>
         /// Retourne l'intégralité de la ludothèque
         /// </summary>
         /// <returns>L'intégralité de la ludothèque</returns>
@@ -128,6 +137,38 @@ namespace Ludotek.Repositories.Respositories
         public void Update(Item item)
         {
             context.Update(item);
+            context.SaveChanges();
+        }
+
+        /// <summary>
+        /// Upsert une liste d'item à la ludothèque
+        /// </summary>
+        /// <param name="items">Les items avec ses tags</param>
+        public void Upsert(List<Item> items)
+        {
+            List<string> noms = items.Select(x => x.Nom).ToList();
+            var existingEntities = context.Items.Where(e => noms.Contains(e.Nom)).AsNoTracking().ToList();
+
+            foreach (var entity in existingEntities)
+            {
+                Item item = items.First(x => x.Nom == entity.Nom && x.Plateforme == entity.Plateforme);
+                if (item != null )
+                {
+                    entity.Copy(item);
+                    items.Remove(item);
+                }
+            }
+
+            if (items.Count > 0)
+            {
+                context.Items.AddRange(items);
+            }
+
+            if (existingEntities.Count > 0)
+            {
+                context.Items.UpdateRange(existingEntities);
+            }
+
             context.SaveChanges();
         }
     }

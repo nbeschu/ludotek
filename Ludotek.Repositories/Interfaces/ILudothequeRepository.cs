@@ -5,6 +5,12 @@ namespace Ludotek.Repositories.Interfaces
     public interface ILudothequeRepository
     {
         /// <summary>
+        /// Vérifie s'il existe des items dans la ludothèque
+        /// </summary>
+        /// <returns>True s'il existe des items dans la ludothèque, false sinon</returns>
+        bool HasItems();
+
+        /// <summary>
         /// Retourne l'intégralité de la ludothèque
         /// </summary>
         /// <returns>L'intégralité de la ludothèque</returns>
@@ -55,5 +61,11 @@ namespace Ludotek.Repositories.Interfaces
         /// </summary>
         /// <param name="item">l'item avec ses tags</param>
         void Update(Item item);
+
+        /// <summary>
+        /// Upsert une liste d'item à la ludothèque
+        /// </summary>
+        /// <param name="items">Les items avec ses tags</param>
+        void Upsert(List<Item> items);
     }
 }
