@@ -1,6 +1,4 @@
-﻿using LudotekV2.Models;
-
-namespace Ludotek2.Models
+﻿namespace LudotekV2.Models
 {
     public class GlobalModel
     {

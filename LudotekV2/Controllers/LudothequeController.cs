@@ -1,6 +1,6 @@
 ﻿using Ludotek.Services;
 using Ludotek.Services.Dto;
-using Ludotek2.Models;
+using LudotekV2.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ludotek2.Controllers

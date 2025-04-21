@@ -1,0 +1,35 @@
+﻿@using LudotekV2.Models
+@{
+    ViewData["Title"] = "La roue des jeux";
+}
+
+@model WheelViewModel
+
+<div class="text-center">
+    <h1 class="display-4">@Model.NomRoue</h1>
+</div>
+
+<div class="mt-5">
+    <table id="table"
+           class="table table-striped table-hover"
+           data-toggle="table"
+           data-pagination="true"
+           data-pagination-loop="false"
+           data-page-list="[5, 10, 25, 50, All]">
+        <thead>
+            <tr>
+                <th data-field="nom">Jeu</th>
+                <th data-field="nombreOccurence">Nombre d'entrée</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Entries)
+            {
+                <tr>
+                    <td>@item.Nom</td>
+                    <td>@item.NombreOccurence</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

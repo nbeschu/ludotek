@@ -1,4 +1,5 @@
 ﻿using Ludotek.Services;
+using Ludotek.Services.Interfaces;
 using Ludotek.Services.Services;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -10,6 +11,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IImportService, ImportService>();
             services.AddScoped<ILudothequeService, LudothequeService>();
             services.AddScoped<ITagService, TagService>();
+            services.AddScoped<IWheelService, WheelService>();
 
             return services;
         }

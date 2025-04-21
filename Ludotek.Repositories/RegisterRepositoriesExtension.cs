@@ -9,6 +9,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             services.AddScoped<ILudothequeRepository, LudothequeRepository>();
             services.AddScoped<ITagRepository, TagRepository>();
+            services.AddScoped<IWheelRepository, WheelRepository>();
 
             return services;
         }
