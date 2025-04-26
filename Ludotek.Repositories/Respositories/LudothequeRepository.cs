@@ -151,8 +151,8 @@ namespace Ludotek.Repositories.Respositories
 
             foreach (var entity in existingEntities)
             {
-                Item item = items.First(x => x.Nom == entity.Nom && x.Plateforme == entity.Plateforme);
-                if (item != null )
+                Item? item = items.FirstOrDefault(x => x.Nom == entity.Nom && x.Plateforme == entity.Plateforme);
+                if (item != null)
                 {
                     entity.Copy(item);
                     items.Remove(item);

@@ -1,6 +1,7 @@
 ﻿@using LudotekV2.Models
 @{
     ViewData["Title"] = "La roue des jeux";
+    var totalOccurences = Model.Entries.Where(e => e.Nom != "Rejouer" && e.Nom != "Je paye mon sub").Sum(e => e.NombreOccurence);
 }
 
 @model WheelViewModel
@@ -15,7 +16,8 @@
            data-toggle="table"
            data-pagination="true"
            data-pagination-loop="false"
-           data-page-list="[5, 10, 25, 50, All]">
+           data-page-size="15"
+           data-page-list="[10, 15, 25, All]">
         <thead>
             <tr>
                 <th data-field="nom">Jeu</th>
@@ -32,4 +34,8 @@
             }
         </tbody>
     </table>
+</div>
+
+<div class="text-center">
+    <h3 class="display-6">TOTAL : @totalOccurences / 30 entrées</h3>
 </div>
