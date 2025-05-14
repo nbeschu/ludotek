@@ -16,9 +16,9 @@
     public class Wheel
     {
         public WheelConfig Config { get; set; }
-        public long? Created { get; set; }
-        public long? LastRead { get; set; }
-        public long? LastWrite { get; set; }
+        public Timestamp? Created { get; set; }
+        public Timestamp? LastRead { get; set; }
+        public Timestamp? LastWrite { get; set; }
         public string Path { get; set; }
         public int ReadCount { get; set; }
         public string ShareMode { get; set; }
@@ -80,5 +80,11 @@
     {
         public string Color { get; set; }
         public bool Enabled { get; set; }
+    }
+
+    public class Timestamp
+    {
+        public int _seconds {  get; set; }
+        public int _nanoseconds {  get; set; }
     }
 }
