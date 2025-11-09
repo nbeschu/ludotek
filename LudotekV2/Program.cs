@@ -1,9 +1,20 @@
-using Ludotek.Repositories.Context;
-using Ludotek.Repositories.Interfaces;
-using Ludotek.Services;
-using Microsoft.EntityFrameworkCore;
+using Ludotek.Services.Interfaces;
+using LudotekV2.DataStore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Data Store
+var dataStore = new CsvDataStore();
+try
+{
+    dataStore.Load();
+}
+catch (Exception ex)
+{
+    Console.WriteLine(ex.Message);
+}
+
+builder.Services.AddSingleton<IDataStore>(dataStore);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -16,9 +27,6 @@ builder.Services.RegisterServices();
 builder.Services.RegisterRepositories();
 
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
-
-builder.Services.AddDbContext<LudotekContext>(options =>
-  options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultDatabase")));
 
 var app = builder.Build();
 
@@ -40,21 +48,5 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
-using var scope = app.Services.CreateScope();
-using var dbContext = scope.ServiceProvider.GetRequiredService<LudotekContext>();
-dbContext.Database.Migrate();
-
-var ludotekRepository = scope.ServiceProvider.GetRequiredService<ILudothequeRepository>();
-var importService = scope.ServiceProvider.GetRequiredService<IImportService>();
-
-if (ludotekRepository.HasItems())
-{
-    importService.ImportDatabase("delta.csv");
-}
-else
-{
-    importService.ImportDatabase("full.csv");
-}
 
 app.Run();

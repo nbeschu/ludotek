@@ -30,7 +30,7 @@ Shadow of the Tomb Raider;Jeu vidéo;PS4;;
 Horizon Zero Dawn;Jeu vidéo;PS4;;true
 Star Wars Squadrons;Jeu vidéo;PS4;;true
 Need for Speed Heat;Jeu vidéo;PS4;;
-Tony Hawks Pro Skater 1+2;Jeu vidéo;PS4;;
+Tony Hawks Pro Skater 1+2;Jeu vidéo;PS4;;true
 Shenmue 1 & 2;Jeu vidéo;PS4;;
 Resident Evil 2;Jeu vidéo;PS4;;
 Resident Evil 7 Biohazard;Jeu vidéo;PS4;;
@@ -41,7 +41,7 @@ Minecraft;Jeu vidéo;PS4;;
 Dragon Ball Z : Kakarot;Jeu vidéo;PS4;;
 Kingdom Hearts HD 2.8 - Final Chapter Prologue;Jeu vidéo;PS4;;
 Dissidia Final Fantasy NT;Jeu vidéo;PS4;;
-Final Fantasy VIII Remastered;Jeu vidéo;PS4;;
+Final Fantasy VIII Remastered;Jeu vidéo;PS4;;true
 Dragons's Crown Pro;Jeu vidéo;PS4;;
 Dark Souls Remastered;Jeu vidéo;PS4;;true
 Dark Souls II Scholar of the First Sin;Jeu vidéo;PS4;;true
@@ -60,7 +60,7 @@ J-Stars Victory VS+;Jeu vidéo;PS4;;
 NBA 2k Playgrounds 2;Jeu vidéo;PS4;;
 Marvel Spider-man;Jeu vidéo;PS4;;true
 Cuphead;Jeu vidéo;PS4;;true
-Hollow Knight;Jeu vidéo;PS4;;
+Hollow Knight;Jeu vidéo;PS4;;true
 Céleste;Jeu vidéo;PS4;;true
 Tunic;Jeu vidéo;PS4;;true
 Teenage Mutant Ninja Turtles : The Cowabunga Collection;Jeu vidéo;PS4;;
@@ -68,9 +68,9 @@ Vengeful Guardian : Moonrider;Jeu vidéo;PS4;;
 God of War;Jeu vidéo;PS4;;true
 Theathrythm Final Bar Line;Jeu vidéo;PS4;;true
 Spyro Reignited Trilogy;Jeu vidéo;PS4;;
-The Surge 2;Jeu vidéo;PS4;;
+The Surge 2;Jeu vidéo;PS4;;true
 Death Stranding;Jeu vidéo;PS4;;
-Code Vein;Jeu vidéo;PS4;;
+Code Vein;Jeu vidéo;PS4;;true
 J-Stars Victory VS+;Jeu vidéo;PS3;;
 Naruto Ultimate Ninja Storm;Jeu vidéo;PS3;;true
 Assassin's Creed Rogue;Jeu vidéo;PS3;;true
@@ -117,7 +117,7 @@ Naruto Shippuden Ultimate Ninja Storm 3;Jeu vidéo;PS3;;true
 3D Dot Games Heroes;Jeu vidéo;PS3;;true
 Assassin's Creed Revelations;Jeu vidéo;PS3;;true
 Demon's Souls;Jeu vidéo;PS3;;true
-Catlevania : Lords of Shadow;Jeu vidéo;PS3;;true
+Castlevania : Lords of Shadow;Jeu vidéo;PS3;;true
 Darksiders;Jeu vidéo;PS3;;true
 FIFA 12;Jeu vidéo;PS3;;true
 NBA 2K12;Jeu vidéo;PS3;;true
@@ -137,7 +137,7 @@ Afro Samurai;Jeu vidéo;PS3;;true
 Borderlands;Jeu vidéo;PS3;;
 Epic Mickey : Le Retour des Héros;Jeu vidéo;PS3;;
 Mario Kart 8;Jeu vidéo;Wii U;;true
-Yoshi's Woolly World;Jeu vidéo;Wii U;;
+Yoshi's Woolly World;Jeu vidéo;Wii U;;true
 New Super Mario Bros U + New Super Luigi U;Jeu vidéo;Wii U;;
 007 Legends;Jeu vidéo;Wii U;;true
 Splatoon;Jeu vidéo;Wii U;;
@@ -152,7 +152,7 @@ Super Smash Bros Brawl;Jeu vidéo;Wii;;true
 Tales of Symphonia : Dawn of the New World;Jeu vidéo;Wii;;
 Goldeneye 007;Jeu vidéo;Wii;;true
 Metroid : Other M;Jeu vidéo;Wii;;true
-Murasame The Demon Blade;Jeu vidéo;Wii;;true
+Muramasa The Demon Blade;Jeu vidéo;Wii;;true
 Dragon Bal Z Budokai Tenkaichi 3;Jeu vidéo;Wii;;true
 Monster Hunter Tri;Jeu vidéo;Wii;;true
 New Super Mario Bros Wii;Jeu vidéo;Wii;;true
@@ -411,7 +411,7 @@ Final Fantasy 3;Jeu vidéo;DS;;
 Mario Slam Basketball;Jeu vidéo;DS;;
 Assassin's Creed Mirage;Jeu vidéo;PS5;;
 Blasphemous 2;Jeu vidéo;PS5;;
-Prince of Persia : The Lost Crown;Jeu vidéo;PS5;;
+Prince of Persia : The Lost Crown;Jeu vidéo;PS5;;true
 Ghost of Tsushima Director's Cut;Jeu vidéo;PS5;;true
 Dead Cells Return to Castlevania;Jeu vidéo;PS5;;true
 Nioh Collection;Jeu vidéo;PS5;;true
@@ -428,7 +428,7 @@ Ratchet & Clank : Rift Apart;Jeu vidéo;PS5;;
 Octopath Traveler 2;Jeu vidéo;PS5;;
 Final Fantasy VII Remake Intergrade;Jeu vidéo;PS5;;
 Crisis Core - Final Fantasy VII - Reunion;Jeu vidéo;PS5;;
-Lies of P;Jeu vidéo;PS5;;
+Lies of P;Jeu vidéo;PS5;;true
 Hogwarts Legacy;Jeu vidéo;PS5;;
 Final Fantasy Pixel Remaster;Jeu vidéo;Switch;;
 Xenoblade Chronicles : Definitive Edition;Jeu vidéo;Switch;;
@@ -445,11 +445,11 @@ Super Smash Bros Ultimate;Jeu vidéo;Switch;;
 Mario Kart 8 Deluxe;Jeu vidéo;Switch;;
 Super Mario Bros Wonder;Jeu vidéo;Switch;;
 Super Mario RPG;Jeu vidéo;Switch;;
-Live a Live;Jeu vidéo;Switch;;
+Live a Live;Jeu vidéo;Switch;;true
 Collection of Mana;Jeu vidéo;Switch;;
 Cadence of Hyrule : Crypt of the NecroDancer feat. The Legend of Zelda;Jeu vidéo;Switch;;true
 Hyrule Warriors : Definitive Edition;Jeu vidéo;Switch;;
-Hyrule Warriors : L'Ère du fléeau;Jeu vidéo;Switch;;true
+Hyrule Warriors : L'Ère du fléau;Jeu vidéo;Switch;;true
 The Legend of Zelda : Breath of the Wild;Jeu vidéo;Switch;;true
 The Legend of Zelda : Tears of the Kingdom;Jeu vidéo;Switch;;true
 Baten Kaitos 1 & 2 HD Remaster;Jeu vidéo;Switch;;
@@ -465,8 +465,8 @@ Death Stranding Director's Cut;Jeu vidéo;PS5;;
 God of War Ragnarok;Jeu vidéo;PS5;;
 Final Fantasy Pixel Remaster;Jeu vidéo;PS4;;
 Dark Souls;Jeu vidéo;PS3;;
-Dark Soulls 2 Vanilla;Jeu vidéo;PS3;;
-Sonic X Shadow Generations;Jeu vidéo;PS5;;
+Dark Souls II;Jeu vidéo;PS3;;
+Sonic X Shadow Generations;Jeu vidéo;PS5;;true
 Red Dead Redemption;Jeu vidéo;PS4;;
 Red Dead Redemption 2;Jeu vidéo;PS4;;
 Final Fantasy 16;Jeu vidéo;PS5;;
@@ -489,3 +489,14 @@ Nintendo World Championships : NES Edition;Jeu vidéo;Switch;;true
 The Legend of Zelda : Link's Awakening;Jeu vidéo;Switch;;
 The Legend of Zelda : Skyward Sword HD;Jeu vidéo;Switch;;true
 007 Legends;Jeu vidéo;PS3;;true
+The Last of Us 2 Remastered;Jeu vidéo;PS5;;
+Wuchang : Fallen Feathers;Jeu vidéo;PS5;;
+The First Berserker : Khazan;Jeu vidéo;PS5;;
+Star Ocean The Second Story R;Jeu vidéo;PS5;;
+Ender Lilies;Jeu vidéo;PS4;;true
+Ender Magnolia;Jeu vidéo;PS4;;
+Sayonara Wild Hearts;Jeu vidéo;PS4;;
+Legacy of Kain Soul Reaver 1 & 2 Remastered;Jeu vidéo;PS5;;
+Shinobi : Art of Vengeance;Jeu vidéo;PS5;;
+Mario Kart World;Jeu vidéo;Switch 2;;
+Star Wars Jedi : Survivor;Jeu vidéo;PS5;;true

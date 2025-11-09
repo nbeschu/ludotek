@@ -9,10 +9,6 @@ namespace LudotekV2.Profiles
     {
         public LudotekProfile()
         {
-            CreateMap<ItemDto, Item>().ReverseMap();
-            CreateMap<TagDto, Tag>().ReverseMap();
-            CreateMap<ItemTagDto, ItemTag>().ReverseMap();
-
             CreateMap<Wheel, WheelDto>()
                 .ForMember(dest => dest.NomRoue, opt => opt.MapFrom(src => src.Config.Title))
                 .ForMember(dest => dest.Entries, opt => opt.MapFrom(src => src.Config.Entries
@@ -30,7 +26,6 @@ namespace LudotekV2.Profiles
             CreateMap<ItemDto, ItemViewModel>()
                 .ForMember(dest => dest.IsTermine, opt => opt.MapFrom(src => src.IsTermine ? "Oui" : "Non"))
                 .ReverseMap();
-            CreateMap<TagDto, TagViewModel>().ReverseMap();
             CreateMap<WheelDto, WheelViewModel>().ReverseMap();
             CreateMap<EntryDto, EntryViewModel>().ReverseMap();
         }

@@ -7,8 +7,6 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static IServiceCollection RegisterRepositories(this IServiceCollection services)
         {
-            services.AddScoped<ILudothequeRepository, LudothequeRepository>();
-            services.AddScoped<ITagRepository, TagRepository>();
             services.AddScoped<IWheelRepository, WheelRepository>();
 
             return services;

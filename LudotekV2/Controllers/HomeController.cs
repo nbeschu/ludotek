@@ -1,5 +1,4 @@
 using AutoMapper;
-using Ludotek.Services;
 using Ludotek.Services.Dto;
 using Ludotek.Services.Interfaces;
 using LudotekV2.Models;
@@ -10,8 +9,6 @@ namespace LudotekV2.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
         protected readonly IMapper _mapper;
         protected readonly IConfiguration _configuration;
 
@@ -26,13 +23,11 @@ namespace LudotekV2.Controllers
         private readonly IWheelService _wheelService;
 
         public HomeController(
-            ILogger<HomeController> logger, 
             ILudothequeService ludothequeService,
             IWheelService wheelService,
             IMapper mapper,
             IConfiguration configuration)
         {
-            _logger = logger;
             _ludothequeService = ludothequeService;
             _wheelService = wheelService;
             _mapper = mapper;
@@ -42,7 +37,7 @@ namespace LudotekV2.Controllers
         public IActionResult Index()
         {
             // Appel au business
-            List<ItemDto> items = _ludothequeService.GetByType("Jeu vidéo");
+            IEnumerable<ItemDto> items = _ludothequeService.GetByType("Jeu vidéo");
 
             List<ItemViewModel> itemsModel = _mapper.Map<List<ItemViewModel>>(items);
 
@@ -52,10 +47,7 @@ namespace LudotekV2.Controllers
         public IActionResult FilmsSeries()
         {
             // Appel au business
-            List<ItemDto> films = _ludothequeService.GetByType("Film");
-            List<ItemDto> series = _ludothequeService.GetByType("Série");
-
-            List<ItemDto> items = [.. films, .. series];
+            IEnumerable<ItemDto> items = _ludothequeService.GetByType("Film/Série");
 
             List<ItemViewModel> itemsModel = _mapper.Map<List<ItemViewModel>>(items);
 
@@ -65,7 +57,7 @@ namespace LudotekV2.Controllers
         public IActionResult Animes()
         {
             // Appel au business
-            List<ItemDto> items = _ludothequeService.GetByType("Anime");
+            IEnumerable<ItemDto> items = _ludothequeService.GetByType("Anime");
 
             List<ItemViewModel> itemsModel = _mapper.Map<List<ItemViewModel>>(items);
 

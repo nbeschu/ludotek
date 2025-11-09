@@ -1,7 +1,7 @@
 ﻿@using LudotekV2.Models
 @{
     ViewData["Title"] = "La roue des jeux";
-    var totalOccurences = Model.Entries.Where(e => e.Nom != "Rejouer" && e.Nom != "Je paye mon sub").Sum(e => e.NombreOccurence);
+    var totalOccurences = Model.Entries.Sum(e => e.NombreOccurence);
 }
 
 @model WheelViewModel

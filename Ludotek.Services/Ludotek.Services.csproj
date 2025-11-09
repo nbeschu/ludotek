@@ -28,9 +28,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Resources\Input\delta.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="Resources\Input\full.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
