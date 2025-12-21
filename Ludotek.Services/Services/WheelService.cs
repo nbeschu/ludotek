@@ -39,7 +39,7 @@ namespace Ludotek.Services.Services
             try
             {
                 Wheel wheel = await _wheelRepositoy.GetWheel(nomRoue);
-                wheel.Config.Entries = wheel.Config.Entries.FindAll(e => e.Text != "Je relance la roue" && e.Text != "Je paye mon sub");
+                wheel.WheelConfig.Entries = wheel.WheelConfig.Entries.FindAll(e => e.Text != "Je relance la roue" && e.Text != "Je paye mon sub");
 
                 WheelDto wheelDto = _mapper.Map<WheelDto>(wheel);
 

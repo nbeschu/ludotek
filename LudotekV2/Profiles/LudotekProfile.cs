@@ -10,8 +10,8 @@ namespace LudotekV2.Profiles
         public LudotekProfile()
         {
             CreateMap<Wheel, WheelDto>()
-                .ForMember(dest => dest.NomRoue, opt => opt.MapFrom(src => src.Config.Title))
-                .ForMember(dest => dest.Entries, opt => opt.MapFrom(src => src.Config.Entries
+                .ForMember(dest => dest.NomRoue, opt => opt.MapFrom(src => src.WheelConfig.Title))
+                .ForMember(dest => dest.Entries, opt => opt.MapFrom(src => src.WheelConfig.Entries
                     .GroupBy(e => e.Text)
                     .Select(g => new EntryDto
                     {

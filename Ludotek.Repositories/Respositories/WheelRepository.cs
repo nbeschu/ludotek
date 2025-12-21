@@ -11,7 +11,7 @@ namespace Ludotek.Repositories.Respositories
         /// </summary>
         public readonly HttpClient _httpClient;
         private const string ApiKey = "53e0b8ac-7f92-4476-b9a9-424e3250bd10";
-        private const string BaseUrl = "https://wheelofnames.com/api/v1/wheels/private";
+        private const string BaseUrl = "https://wheelofnames.com/api/v2/wheels/private";
 
         /// <summary>
         /// Constructeur avec injection de dépendance
@@ -53,7 +53,7 @@ namespace Ludotek.Repositories.Respositories
                 throw new Exception("Pas de roue trouvée");
             }
 
-            Wheel wheel = wheelResponse.Data?.Wheels?.FirstOrDefault(x => x.Config?.Title == nomRoue);
+            Wheel wheel = wheelResponse.Data?.Wheels?.FirstOrDefault(x => x.WheelConfig?.Title == nomRoue);
 
             if (wheel == null)
             {
